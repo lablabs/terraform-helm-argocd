@@ -1,4 +1,4 @@
-# AWS EKS cluster autoscaler Terraform module
+# ArgoCD Terraform module
 
 [![labyrinth labs logo](ll-logo.png)](https://lablabs.io/)
 
