@@ -53,8 +53,8 @@ variable "settings" {
 }
 
 variable "self_managed" {
-  type = bool
-  default = true
+  type        = bool
+  default     = true
   description = "If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release"
 }
 

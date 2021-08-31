@@ -1,5 +1,5 @@
 resource "kubernetes_manifest" "self" {
-  count            = var.enabled && var.self_managed ? 1 : 0
+  count = var.enabled && var.self_managed ? 1 : 0
   manifest = {
     "apiVersion" = "argoproj.io/v1alpha1"
     "kind"       = "Application"
@@ -9,19 +9,19 @@ resource "kubernetes_manifest" "self" {
     }
     "spec" = {
       "project" = "default"
-      "source"  = {
-        "repoURL" = var.helm_repo_url
-        "chart" = var.helm_chart_name
+      "source" = {
+        "repoURL"        = var.helm_repo_url
+        "chart"          = var.helm_chart_name
         "targetRevision" = var.helm_chart_version
-        "path" = "helm-guestbook"
+        "path"           = "helm-guestbook"
         "helm" = {
           "releaseName" = var.helm_release_name
-          "parameters" = [for k, v in var.settings : tomap({"forceString": true, "name": k, "value": v})]
-          "values" = var.values
+          "parameters"  = [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
+          "values"      = var.values
         }
       }
       "destination" = {
-        "server" = "https://kubernetes.default.svc"
+        "server"    = "https://kubernetes.default.svc"
         "namespace" = var.k8s_namespace
       }
     }
