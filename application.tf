@@ -8,12 +8,11 @@ resource "kubernetes_manifest" "self" {
       "namespace" = var.k8s_namespace
     }
     "spec" = {
-      "project" = "default"
+      "project" = var.argo_project
       "source" = {
         "repoURL"        = var.helm_repo_url
         "chart"          = var.helm_chart_name
         "targetRevision" = var.helm_chart_version
-        "path"           = "helm-guestbook"
         "helm" = {
           "releaseName" = var.helm_release_name
           "parameters"  = [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
@@ -21,9 +20,10 @@ resource "kubernetes_manifest" "self" {
         }
       }
       "destination" = {
-        "server"    = "https://kubernetes.default.svc"
+        "server"    = var.argo_destionation_server
         "namespace" = var.k8s_namespace
       }
+      "syncPolicy" = var.argo_sync_policy
     }
   }
 

@@ -13,6 +13,16 @@ We help companies build, run, deploy and scale software and infrastructure by em
 
 A terraform module to deploy the ArgoCD on Amazon EKS cluster.
 
+This module deploys ArgoCD in two different ways:
+1. A helm release that is further managed by Helm
+2. A helm release along with ArgoCD Application CRD which allows Argo to self-manage itself.
+
+When `self_managed` variable is set to true, ArgoCD application is deployed and you're able to manage ArgoCD from ArgoCD. The helm release has a lifecycle ignore_changes rules set on it's resource, so no further changes are made to the release. It is only used for the initial ArgoCD deployment.
+
+**Important notice**
+
+Changing the `self_managed` variable after ArgoCD was already deployed will result in it's re-creation.
+
 ## Related Projects
 
 Check out these related projects.
@@ -53,12 +63,20 @@ No Modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| argo\_destionation\_server | Destination server for ArgoCD Application | `string` | `"https://kubernetes.default.svc"` | no |
+| argo\_info | ArgoCD info manifest parameter | `map` | `{}` | no |
+| argo\_project | ArgoCD Application project | `string` | `"default"` | no |
+| argo\_sync\_policy | ArgoCD syncPolicy manifest parameter | `map` | `{}` | no |
 | enabled | Variable indicating whether deployment is enabled | `bool` | `true` | no |
+| helm\_atomic | If set, installation process purges chart on fail. The wait flag will be set automatically if atomic is used. Defaults to false. | `bool` | `false` | no |
 | helm\_chart\_name | Helm chart name to be installed | `string` | `"argo-cd"` | no |
 | helm\_chart\_version | Version of the Helm chart | `string` | `"3.17.5"` | no |
+| helm\_cleanup\_on\_fail | Allow deletion of new resources created in this upgrade when upgrade fails. Defaults to false. | `bool` | `false` | no |
 | helm\_create\_namespace | Create the namespace if it does not yet exist | `bool` | `true` | no |
 | helm\_release\_name | Helm release name | `string` | `"argocd"` | no |
 | helm\_repo\_url | Helm repository | `string` | `"https://argoproj.github.io/argo-helm"` | no |
+| helm\_timeout | Time in seconds to wait for any individual kubernetes operation (like Jobs for hooks). Defaults to 300 seconds. | `number` | `300` | no |
+| helm\_wait | Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as timeout. Defaults to true. | `bool` | `true` | no |
 | k8s\_namespace | The K8s namespace in which the ingress-nginx has been created | `string` | `"argo"` | no |
 | self\_managed | If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release | `bool` | `true` | no |
 | settings | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/argo/argo-cd | `map(any)` | `{}` | no |

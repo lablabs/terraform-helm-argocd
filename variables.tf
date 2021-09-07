@@ -38,6 +38,30 @@ variable "helm_repo_url" {
   description = "Helm repository"
 }
 
+variable "helm_wait" {
+  type        = bool
+  default     = true
+  description = "Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as timeout. Defaults to true."
+}
+
+variable "helm_timeout" {
+  type        = number
+  default     = 300
+  description = "Time in seconds to wait for any individual kubernetes operation (like Jobs for hooks). Defaults to 300 seconds."
+}
+
+variable "helm_cleanup_on_fail" {
+  type        = bool
+  default     = false
+  description = "Allow deletion of new resources created in this upgrade when upgrade fails. Defaults to false."
+}
+
+variable "helm_atomic" {
+  type        = bool
+  default     = false
+  description = "If set, installation process purges chart on fail. The wait flag will be set automatically if atomic is used. Defaults to false."
+}
+
 # K8s
 
 variable "k8s_namespace" {
@@ -62,4 +86,26 @@ variable "values" {
   type        = string
   default     = ""
   description = "Additional yaml encoded values which will be passed to the Helm chart."
+}
+
+variable "argo_destionation_server" {
+  type        = string
+  default     = "https://kubernetes.default.svc"
+  description = "Destination server for ArgoCD Application"
+}
+
+variable "argo_project" {
+  type        = string
+  default     = "default"
+  description = "ArgoCD Application project"
+}
+
+variable "argo_info" {
+  default     = {}
+  description = "ArgoCD info manifest parameter"
+}
+
+variable "argo_sync_policy" {
+  description = "ArgoCD syncPolicy manifest parameter"
+  default     = {}
 }

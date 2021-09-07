@@ -6,6 +6,10 @@ resource "helm_release" "this" {
   name             = var.helm_release_name
   version          = var.helm_chart_version
   repository       = var.helm_repo_url
+  wait             = var.helm_wait
+  timeout          = var.helm_timeout
+  cleanup_on_fail  = var.helm_cleanup_on_fail
+  atomic           = var.helm_atomic
 
   values = [
     var.values
@@ -28,6 +32,10 @@ resource "helm_release" "self_managed" {
   name             = var.helm_release_name
   version          = var.helm_chart_version
   repository       = var.helm_repo_url
+  wait             = var.helm_wait
+  timeout          = var.helm_timeout
+  cleanup_on_fail  = var.helm_cleanup_on_fail
+  atomic           = var.helm_atomic
 
   values = [
     var.values
