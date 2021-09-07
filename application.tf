@@ -24,6 +24,7 @@ resource "kubernetes_manifest" "self" {
         "namespace" = var.k8s_namespace
       }
       "syncPolicy" = var.argo_sync_policy
+      "info"       = var.argo_info
     }
   }
 
