@@ -19,6 +19,10 @@ This module deploys ArgoCD in two different ways:
 
 When `self_managed` variable is set to true, ArgoCD application is deployed and you're able to manage ArgoCD from ArgoCD. The helm release has a lifecycle ignore_changes rules set on it's resource, so no further changes are made to the release. It is only used for the initial ArgoCD deployment.
 
+**Important notice**
+
+Changing the `self_managed` variable after ArgoCD was already deployed will result in it's re-creation.
+
 ## Related Projects
 
 Check out these related projects.
