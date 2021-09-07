@@ -64,7 +64,7 @@ No Modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | argo\_destionation\_server | Destination server for ArgoCD Application | `string` | `"https://kubernetes.default.svc"` | no |
-| argo\_info | ArgoCD info manifest parameter | `map` | `{}` | no |
+| argo\_info | ArgoCD info manifest parameter | `list` | <pre>[<br>  {<br>    "name": "terraform",<br>    "value": "true"<br>  }<br>]</pre> | no |
 | argo\_project | ArgoCD Application project | `string` | `"default"` | no |
 | argo\_sync\_policy | ArgoCD syncPolicy manifest parameter | `map` | `{}` | no |
 | enabled | Variable indicating whether deployment is enabled | `bool` | `true` | no |

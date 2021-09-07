@@ -101,7 +101,10 @@ variable "argo_project" {
 }
 
 variable "argo_info" {
-  default     = {}
+  default = [{
+    "name"  = "terraform"
+    "value" = "true"
+  }]
   description = "ArgoCD info manifest parameter"
 }
 
