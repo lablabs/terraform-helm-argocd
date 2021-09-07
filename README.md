@@ -13,6 +13,12 @@ We help companies build, run, deploy and scale software and infrastructure by em
 
 A terraform module to deploy the ArgoCD on Amazon EKS cluster.
 
+This module deploys ArgoCD in two different ways:
+1. A helm release that is further managed by Helm
+2. A helm release along with ArgoCD Application CRD which allows Argo to self-manage itself.
+
+When `self_managed` variable is set to true, ArgoCD application is deployed and you're able to manage ArgoCD from ArgoCD. The helm release has a lifecycle ignore_changes rules set on it's resource, so no further changes are made to the release. It is only used for the initial ArgoCD deployment.
+
 ## Related Projects
 
 Check out these related projects.
