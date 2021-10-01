@@ -2,21 +2,21 @@ locals {
   argo_application_values = yamlencode({
     "project" : var.argo_project
     "source" : {
-      "repoURL"        : var.helm_repo_url
-      "chart"          : var.helm_chart_name
+      "repoURL" : var.helm_repo_url
+      "chart" : var.helm_chart_name
       "targetRevision" : var.helm_chart_version
       "helm" : {
         "releaseName" : var.helm_release_name
-        "parameters"  : [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
-        "values"      : var.values
+        "parameters" : [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
+        "values" : var.values
       }
     }
     "destination" : {
-      "server"    : var.argo_destionation_server
+      "server" : var.argo_destionation_server
       "namespace" : var.k8s_namespace
     }
     "syncPolicy" : var.argo_sync_policy
-    "info"       : var.argo_info
+    "info" : var.argo_info
   })
 }
 
