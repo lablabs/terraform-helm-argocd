@@ -112,3 +112,8 @@ variable "argo_sync_policy" {
   description = "ArgoCD syncPolicy manifest parameter"
   default     = {}
 }
+
+variable "argo_application_values" {
+  description = "Values to pass to the dummy helm chart installing the ArgoCD application object"
+  default = ""
+}
