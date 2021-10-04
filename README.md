@@ -39,6 +39,17 @@ Check out these related projects.
 ## Examples
 
 See [Basic example](examples/basic/README.md) for further information.
+
+## ArgoCD self-managed mode
+
+This module provides an option to deploy in self managed mode. If `self_managed` is set, the module will make an initial deployment of ArgoCD with Helm and then proceed to deploy ArgoCD Application object. The original helm release is ignored in further terraform runs and only the newly deployed, self-managed object is used.
+
+### Potential issues with running terraform plan
+
+When deploying Argo in self-managed mode, Kubernetes terraform provider requires access to Kubernetes cluster API during plan time. This introduces potential issue when you want to deploy the cluster with this addon at the same time, during the same Terraform run.
+
+To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If this approach is not desired for you and you still want to deploy ArgoCD using the Kubernetes provider, you can set the 1`self_managed_use_raw_manifest` variable to `true`.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
