@@ -60,6 +60,7 @@ No modules.
 | [helm_release.argocd_application](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.self_managed](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [helm_release.this](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [kubernetes_manifest.self](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
 | [utils_deep_merge_yaml.argo_application_values](https://registry.terraform.io/providers/cloudposse/utils/latest/docs/data-sources/deep_merge_yaml) | data source |
 
 ## Inputs
@@ -83,6 +84,7 @@ No modules.
 | <a name="input_helm_wait"></a> [helm\_wait](#input\_helm\_wait) | Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as timeout. Defaults to true. | `bool` | `true` | no |
 | <a name="input_k8s_namespace"></a> [k8s\_namespace](#input\_k8s\_namespace) | The K8s namespace in which the ingress-nginx has been created | `string` | `"argo"` | no |
 | <a name="input_self_managed"></a> [self\_managed](#input\_self\_managed) | If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release | `bool` | `true` | no |
+| <a name="input_self_managed_use_raw_manifest"></a> [self\_managed\_use\_raw\_manifest](#input\_self\_managed\_use\_raw\_manifest) | If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a raw manifest. Otherwise it'll be deployed as a separate Helm release. See Readme for more info | `bool` | `false` | no |
 | <a name="input_settings"></a> [settings](#input\_settings) | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/argo/argo-cd | `map(any)` | `{}` | no |
 | <a name="input_values"></a> [values](#input\_values) | Additional yaml encoded values which will be passed to the Helm chart. | `string` | `""` | no |
 
