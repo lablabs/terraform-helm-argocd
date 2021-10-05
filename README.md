@@ -48,7 +48,7 @@ This module provides an option to deploy in self managed mode. If `self_managed`
 
 When deploying Argo in self-managed mode, Kubernetes terraform provider requires access to Kubernetes cluster API during plan time. This introduces potential issue when you want to deploy the cluster with this addon at the same time, during the same Terraform run.
 
-To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If this approach is not desired for you and you still want to deploy ArgoCD using the Kubernetes provider, you can set the 1`self_managed_use_raw_manifest` variable to `true`.
+To overcome this issue, the module deploys the ArgoCD application object using the Helm provider, which does not require API access during plan. If you want to deploy the application using this workaround, you can set the `self_managed_use_helm` variable to `true`.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -95,7 +95,7 @@ No modules.
 | <a name="input_helm_wait"></a> [helm\_wait](#input\_helm\_wait) | Will wait until all resources are in a ready state before marking the release as successful. It will wait for as long as timeout. Defaults to true. | `bool` | `true` | no |
 | <a name="input_k8s_namespace"></a> [k8s\_namespace](#input\_k8s\_namespace) | The K8s namespace in which the ingress-nginx has been created | `string` | `"argo"` | no |
 | <a name="input_self_managed"></a> [self\_managed](#input\_self\_managed) | If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release | `bool` | `true` | no |
-| <a name="input_self_managed_use_raw_manifest"></a> [self\_managed\_use\_raw\_manifest](#input\_self\_managed\_use\_raw\_manifest) | If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a raw manifest. Otherwise it'll be deployed as a separate Helm release. See Readme for more info | `bool` | `false` | no |
+| <a name="input_self_managed_use_helm"></a> [self\_managed\_use\_helm](#input\_self\_managed\_use\_helm) | If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a Helm release. Otherwise it'll be deployed as a Kubernetes manifest. See Readme for more info | `bool` | `false` | no |
 | <a name="input_settings"></a> [settings](#input\_settings) | Additional settings which will be passed to the Helm chart values, see https://artifacthub.io/packages/helm/argo/argo-cd | `map(any)` | `{}` | no |
 | <a name="input_values"></a> [values](#input\_values) | Additional yaml encoded values which will be passed to the Helm chart. | `string` | `""` | no |
 

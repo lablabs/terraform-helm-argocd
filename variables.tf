@@ -82,10 +82,10 @@ variable "self_managed" {
   description = "If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release"
 }
 
-variable "self_managed_use_raw_manifest" {
+variable "self_managed_use_helm" {
   type        = bool
   default     = false
-  description = "If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a raw manifest. Otherwise it'll be deployed as a separate Helm release. See Readme for more info"
+  description = "If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a Helm release. Otherwise it'll be deployed as a Kubernetes manifest. See Readme for more info"
 }
 
 variable "values" {
