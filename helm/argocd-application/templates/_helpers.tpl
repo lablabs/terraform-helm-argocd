@@ -41,3 +41,11 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "argocd_application.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "argocd_application.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}

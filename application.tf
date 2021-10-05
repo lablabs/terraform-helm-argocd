@@ -1,5 +1,5 @@
 locals {
-  argo_application_values = yamlencode({
+  argo_application_values = {
     "project" : var.argo_project
     "source" : {
       "repoURL" : var.helm_repo_url
@@ -17,13 +17,13 @@ locals {
     }
     "syncPolicy" : var.argo_sync_policy
     "info" : var.argo_info
-  })
+  }
 }
 
 data "utils_deep_merge_yaml" "argo_application_values" {
   count = var.enabled && var.self_managed && var.self_managed_use_helm ? 1 : 0
   input = compact([
-    local.argo_application_values,
+    yamlencode(local.argo_application_values),
     var.argo_application_values
   ])
 }
