@@ -82,6 +82,12 @@ variable "self_managed" {
   description = "If set to true, the module will create ArgoCD Application manifest in the cluster and abandon the Helm release"
 }
 
+variable "self_managed_use_helm" {
+  type        = bool
+  default     = false
+  description = "If set to true, the ArgoCD Application manifest will be deployed using Kubernetes provider as a Helm release. Otherwise it'll be deployed as a Kubernetes manifest. See Readme for more info"
+}
+
 variable "values" {
   type        = string
   default     = ""
@@ -111,4 +117,9 @@ variable "argo_info" {
 variable "argo_sync_policy" {
   description = "ArgoCD syncPolicy manifest parameter"
   default     = {}
+}
+
+variable "argo_application_values" {
+  description = "Values to pass to the dummy helm chart installing the ArgoCD application object"
+  default     = ""
 }
