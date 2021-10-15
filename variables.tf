@@ -123,3 +123,16 @@ variable "argo_application_values" {
   description = "Values to pass to the dummy helm chart installing the ArgoCD application object"
   default     = ""
 }
+
+variable "argo_application_enabled" {
+  default = false
+}
+
+variable "argo_application_use_helm" {
+  default = false
+}
+
+variable "argo_application_namespace" {
+  default     = "argo"
+  description = "Namespace where to deploy Argo application"
+}
