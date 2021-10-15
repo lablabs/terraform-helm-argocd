@@ -1,5 +1,5 @@
 resource "helm_release" "this" {
-  count            = var.enabled && !var.self_managed ? 1 : 0
+  count            = var.enabled && !var.self_managed && !var.argo_application_enabled ? 1 : 0
   chart            = var.helm_chart_name
   create_namespace = var.helm_create_namespace
   namespace        = var.k8s_namespace
@@ -25,7 +25,7 @@ resource "helm_release" "this" {
 }
 
 resource "helm_release" "self_managed" {
-  count            = var.enabled && var.self_managed ? 1 : 0
+  count            = var.enabled && var.self_managed && !var.argo_application_enabled ? 1 : 0
   chart            = var.helm_chart_name
   create_namespace = var.helm_create_namespace
   namespace        = var.k8s_namespace
