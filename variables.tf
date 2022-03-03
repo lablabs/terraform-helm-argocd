@@ -32,6 +32,20 @@ variable "helm_release_name" {
   description = "Helm release name"
 }
 
+variable "helm_repo_username" {
+  type        = string
+  default     = null
+  sensitive   = true
+  description = "Helm repository username"
+}
+
+variable "helm_repo_password" {
+  type        = string
+  default     = null
+  sensitive   = true
+  description = "Helm repository password"
+}
+
 variable "helm_repo_url" {
   type        = string
   default     = "https://argoproj.github.io/argo-helm"
