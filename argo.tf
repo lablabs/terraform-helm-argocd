@@ -2,7 +2,7 @@ locals {
   argo_application_metadata = {
     "labels" : try(var.argo_metadata.labels, {}),
     "annotations" : try(var.argo_metadata.annotations, {}),
-    "finalizers" : try(var.argo_metadata.finalizers, [])
+    "finalizers" : try(var.argo_metadata.finalizers, tolist(null))
   }
   argo_application_values = {
     "project" : var.argo_project

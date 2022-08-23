@@ -102,11 +102,7 @@ variable "argo_sync_policy" {
 }
 
 variable "argo_metadata" {
-  default = {
-    "finalizers" : [
-      "resources-finalizer.argocd.argoproj.io"
-    ]
-  }
+  default     = {}
   description = "ArgoCD Application metadata configuration. Override or create additional metadata parameters"
 }
 
