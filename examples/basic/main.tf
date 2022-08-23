@@ -1,6 +1,6 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.6.0"
+  version = "3.14.2"
 
   name               = "argocd-vpc"
   cidr               = "10.0.0.0/16"
@@ -11,7 +11,7 @@ module "vpc" {
 
 module "eks_cluster" {
   source  = "cloudposse/eks-cluster/aws"
-  version = "0.43.2"
+  version = "2.3.0"
 
   region     = "eu-central-1"
   subnet_ids = module.vpc.public_subnets
@@ -21,7 +21,7 @@ module "eks_cluster" {
 
 module "eks_node_group" {
   source  = "cloudposse/eks-node-group/aws"
-  version = "0.25.0"
+  version = "2.4.0"
 
   cluster_name   = "argocd"
   instance_types = ["t3.medium"]

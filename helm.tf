@@ -10,6 +10,7 @@ resource "helm_release" "this" {
   timeout          = var.helm_timeout
   cleanup_on_fail  = var.helm_cleanup_on_fail
   atomic           = var.helm_atomic
+  skip_crds        = var.helm_skip_crds
 
   values = [
     var.values
@@ -36,6 +37,7 @@ resource "helm_release" "self_managed" {
   timeout          = var.helm_timeout
   cleanup_on_fail  = var.helm_cleanup_on_fail
   atomic           = var.helm_atomic
+  skip_crds        = var.helm_skip_crds
 
   values = [
     var.values

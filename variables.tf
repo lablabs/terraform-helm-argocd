@@ -62,6 +62,12 @@ variable "helm_atomic" {
   description = "If set, installation process purges chart on fail. The wait flag will be set automatically if atomic is used. Defaults to false."
 }
 
+variable "helm_skip_crds" {
+  type        = bool
+  default     = false
+  description = "If set, no CRDs will be installed. By default, CRDs are installed if not already present. Defaults to false."
+}
+
 # K8s
 
 variable "k8s_namespace" {

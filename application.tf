@@ -7,6 +7,7 @@ locals {
       "targetRevision" : var.helm_chart_version
       "helm" : {
         "releaseName" : var.helm_release_name
+        "skipCrds" : var.helm_skip_crds
         "parameters" : [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
         "values" : var.values
       }
