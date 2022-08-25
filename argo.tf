@@ -14,6 +14,7 @@ locals {
         "releaseName" : var.helm_release_name
         "parameters" : [for k, v in var.settings : tomap({ "forceString" : true, "name" : k, "value" : v })]
         "values" : var.enabled ? data.utils_deep_merge_yaml.values[0].output : ""
+        "skipCrds" : var.argo_skip_crds
       }
     }
     "destination" : {

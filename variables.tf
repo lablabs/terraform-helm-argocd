@@ -116,6 +116,12 @@ variable "argo_spec" {
   description = "ArgoCD Application spec configuration. Override or create additional spec parameters"
 }
 
+variable "argo_skip_crds" {
+  type        = bool
+  default     = false
+  description = "If set, no CRDs will be installed when deploying argo application"
+}
+
 variable "argo_helm_values" {
   type        = string
   default     = ""
