@@ -9,11 +9,11 @@ metadata:
     {{- end }}
   annotations:
     {{- if .Values.annotations }}
-    {{ toYaml .Values.annotations | indent 4 }}
+    {{ toYaml .Values.annotations | nindent 4 }}
     {{- end }}
   finalizers:
     {{- if .Values.finalizers }}
-    {{ toYaml .Values.finalizers | indent 4 }}
+    {{ toYaml .Values.finalizers | nindent 4 }}
     {{- end }}
 spec:
   {{ toYaml .Values.spec | nindent 2 }}
