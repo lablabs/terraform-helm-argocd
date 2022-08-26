@@ -1,5 +1,9 @@
 # ArgoCD Terraform module
 
+## Archivation info
+
+This repo is archived. Development of this module continues in [lablabs/terraform-aws-eks-argocd](https://github.com/lablabs/terraform-aws-eks-argocd)
+
 [![labyrinth labs logo](ll-logo.png)](https://lablabs.io/)
 
 We help companies build, run, deploy and scale software and infrastructure by embracing the right technologies and principles. Check out our website at <https://lablabs.io/>
