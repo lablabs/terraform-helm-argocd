@@ -53,12 +53,6 @@ module "argocd_helm" {
   helm_timeout = 240
   helm_wait    = true
 
-  settings = {
-    "resources.limits.cpu" : "50m"
-    "resources.limits.memory" : "50Mi"
-    "resources.requests.cpu" : "15m"
-    "resources.requests.memory" : "50Mi"
-  }
 }
 
 module "argocd_self_managed_kubernetes" {
@@ -72,13 +66,6 @@ module "argocd_self_managed_kubernetes" {
 
   helm_release_name = "argocd-kubernetes"
   namespace         = "argocd-kubernetes"
-
-  settings = {
-    "resources.limits.cpu" : "50m"
-    "resources.limits.memory" : "50Mi"
-    "resources.requests.cpu" : "15m"
-    "resources.requests.memory" : "50Mi"
-  }
 
   argo_sync_policy = {
     "automated" : {}
@@ -97,13 +84,6 @@ module "argocd_self_managed_helm" {
 
   helm_release_name = "argocd-helm"
   namespace         = "argocd-helm"
-
-  settings = {
-    "resources.limits.cpu" : "50m"
-    "resources.limits.memory" : "50Mi"
-    "resources.requests.cpu" : "15m"
-    "resources.requests.memory" : "50Mi"
-  }
 
   argo_namespace = "argo"
   argo_sync_policy = {
